@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import { useRouter } from 'next/router';
 
 const Login = () => {
-  // use Navigate hook
+  // use Navigate router hook
   const router = useRouter(); 
 
   // interface for form props
