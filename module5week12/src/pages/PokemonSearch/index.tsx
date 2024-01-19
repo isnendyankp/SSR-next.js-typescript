@@ -74,8 +74,10 @@ const PokemonSearchContainer: React.FC = () => {
 
   // render
   return (
-    <div className="flex items-center justify-center flex-col min-h-screen bg-gray-100 px-4">
-      <form onSubmit={formik.handleSubmit}>
+    <div className="flex flex-col items-center justify-center bg-gray-100 min-h-full py-4">
+      <h1 className="text-4xl mb-5">Pokemon Search</h1>
+
+      <form className="w-full max-w-sm" onSubmit={formik.handleSubmit}>
         {/* Input Search */}
         <Input
           type="text"
@@ -83,42 +85,37 @@ const PokemonSearchContainer: React.FC = () => {
           value={formik.values.search}
           name="search"
           placeholder="Search Pokemon"
-          className="p-2 rounded border border-gray-300 shadow-inner mb-4"
+          className="appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
         />
         {formik.errors.search ? (
-          <div className="text-red-600">{formik.errors.search}</div>
+          <div className="text-red-600 mb-4">{formik.errors.search}</div>
         ) : null}
-
-        <br />
 
         {/* Button Search */}
         <Button
           type="submit"
           label="Search"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full mt-4"
         />
       </form>
 
       {/* Pokemon Card */}
       {pokemon ? (
-        <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white p-4">
+        <div className="max-w-sm w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 mt-8 p-4 bg-white rounded overflow-hidden shadow-lg relative">
           {/* image */}
           <img
+            className="w-full h-64 object-cover"
             src={pokemon.sprites.front_default}
             alt={pokemon.name}
-            className="w-full"
           />
 
           {/* detail */}
           <div className="px-6 py-4">
-            {/* name */}
-            <h1 className="font-bold text-xl mb-2">{pokemon.name}</h1>
-            {/* types */}
-            <p>
+            <div className="font-bold text-xl mb-2">{pokemon.name}</div>
+            <p className="text-gray-700 text-base">
               Types: {pokemon.types.map((type) => type.type.name).join(', ')}
             </p>
-            {/* abilities */}
-            <p>
+            <p className="text-gray-700 text-base">
               Abilities:{' '}
               {pokemon.abilities
                 .map((ability) => ability.ability.name)
@@ -127,14 +124,14 @@ const PokemonSearchContainer: React.FC = () => {
           </div>
         </div>
       ) : (
-        <p>No Pokemon found.</p>
+        search !== '' && <p className="mt-8">No Pokemon found.</p>
       )}
 
-      {/* Buitton back to list */}
+      {/* Button back to list */}
       <Button
         label="Back to Pokemon List"
         onClick={() => router.push('/PokemonList')}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+        className="mt-8 w-full max-w-sm sm:max-w-xs bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
       />
     </div>
   );
