@@ -1,16 +1,15 @@
-import { Input, Text, Button, Card } from '../components';
+import { Input, Text, Button, Card } from '../../components';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { useRouter } from 'next/router';
 
-const Home = () => {
-  // use router hook
-  const router = useRouter();
+const Login = () => {
+  // use Navigate hook
+  const router = useRouter(); 
 
   // interface for form props
   interface FormProps {
     email: string;
-    name: string;
     password: string;
   }
 
@@ -18,27 +17,46 @@ const Home = () => {
   const formMik = useFormik<FormProps>({
     initialValues: {
       email: '',
-      name: '',
       password: '',
     },
 
-    // onSubmit function for submit form
+    // onSubmit function for login form
     onSubmit: async (values) => {
-      await fetch('https://mock-api.arikmpt.com/api/user/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(values),
-      });
-      console.log('success');
-      // navigate to login page
-      router.push('/Login');
+      try {
+        const response = await fetch(
+          'https://mock-api.arikmpt.com/api/user/login',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(values),
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        } else {
+          // if response is ok, you can use it here
+          const data = await response.json();
+          // set token to local storage
+          localStorage.setItem('token', data.data.token);
+          console.log(data);
+          // navigate to list page
+          router.push('/PokemonList');
+        }
+      } catch (error) {
+        // catch any network error or any error thrown in the fetch call
+        console.log(
+          'There has been a problem with your fetch operation: ' +
+            (error as Error).message
+        );
+      }
     },
 
     // validation for username, email & password
     validationSchema: yup.object({
-      name: yup.string().required('name tidak boleh kosong'),
+      // name: yup.string().required('name tidak boleh kosong'),
       email: yup
         .string()
         .email('Email tidak valid')
@@ -55,19 +73,6 @@ const Home = () => {
       <Card border>
         {/* form element */}
         <form onSubmit={formMik.handleSubmit}>
-          {/* Input name */}
-          <div className="m-1">
-            <Text>{'name'}</Text>
-            <Input
-              className="block border-emerald-700 border"
-              name={'name'}
-              value={formMik.values.name}
-              onChange={formMik.handleChange('name')}
-            />
-            {/* add error validation text with yup for input name */}
-            {formMik.errors.name && <Text>{formMik.errors.name}</Text>}
-          </div>
-
           {/* Input Email */}
           <div className="m-1">
             <Text>{'Email'}</Text>
@@ -95,19 +100,19 @@ const Home = () => {
             {formMik.errors.password && <Text>{formMik.errors.password}</Text>}
           </div>
 
-          {/* Button Submit */}
-          <Button label={'Submit'} type={'submit'} className={'bg-green-500'} />
-
-          {/* "Login" button */}
+          {/* "Register" button */}
           <Button
-            label={'Login'}
-            onClick={() => router.push('/Login')}
+            label={'Register'}
+            onClick={() => router.push('/')}
             className={'bg-blue-500 mt-2'}
           />
+
+          {/* Button Login */}
+          <Button label={'Login'} type={'submit'} className={'bg-green-500'} />
         </form>
       </Card>
     </Card>
   );
 };
 
-export default Home;
+export default Login;
