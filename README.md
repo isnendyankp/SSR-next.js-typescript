@@ -43,3 +43,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## installer 
 1. npm install formik --save
 2. npm install yup
+3. npm install axios
