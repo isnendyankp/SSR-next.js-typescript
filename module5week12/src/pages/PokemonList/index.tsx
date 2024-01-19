@@ -4,13 +4,17 @@ import { useRouter } from 'next/router';
 import { Text, Button } from '../../components';
 import { PokemonListData } from '../../interfaces/Category';
 
-// PokemonListContainer component
 const PokemonListContainer: React.FC = () => {
   // useState hook
   const [pokemon, setPokemon] = useState<PokemonListData[]>([]);
 
   // use Navigate router hook
   const router = useRouter();
+
+  // Add scroll to top function
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   // useEffect hook
   useEffect(() => {
@@ -54,43 +58,45 @@ const PokemonListContainer: React.FC = () => {
         console.error('Error fetching Pokemon:', error);
       }
     };
+
     fetchPokemon();
   }, []);
 
   return (
     <div className="flex flex-col items-center justify-center bg-gray-100 min-h-screen px-6">
-      <h1 className="text-4xl mb-5">
+      <h1 className="text-4xl mb-4">
         <Text>Pokemon List</Text>
       </h1>
-
-      {/* Button navigate to pokemonsearch */}
       <Button
         label="Pokemon Search"
         onClick={() => router.push('/PokemonSearch')}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-6"
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-5"
       />
-
-      {/* Pokemon List */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {pokemon.map((poke) => (
           <div
             key={poke.id}
-            className="flex flex-col items-center bg-blue-200 border-blue-500 border-solid border-2 p-2 rounded-md"
+            className="flex flex-col items-center bg-blue-200 border-blue-500 border-solid border-2 p-2 my-2 rounded-md w-64"
           >
-            <img
-              className="w-32 h-32 object-cover"
-              src={poke.sprite}
-              alt={poke.name}
-            />
-            <div>
-              <p className="text-lg font-semibold mt-3">{poke.name}</p>
+            <div className="mb-2">
+              <p className="text-lg font-semibold">{poke.name}</p>
               <p>ID: {poke.id}</p>
               <p>Types: {poke.types.join(', ')}</p>
               <p>Abilities: {poke.abilities.join(', ')}</p>
             </div>
+            <img src={poke.sprite} alt={poke.name} />
           </div>
         ))}
       </div>
+
+      {/* Back to Top */}
+      <Button
+        label="Back to Top"
+        onClick={scrollToTop}
+        className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-4 sticky bottom-4"
+      >
+        Back to Top
+      </Button>
     </div>
   );
 };
