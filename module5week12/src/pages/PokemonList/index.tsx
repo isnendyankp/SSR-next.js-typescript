@@ -18,7 +18,7 @@ const PokemonListContainer: React.FC = () => {
       try {
         // fetch pokemon list from API
         const response = await axios.get(
-          'https://pokeapi.co/api/v2/pokemon?limit=10'
+          'https://pokeapi.co/api/v2/pokemon?limit=61'
         );
 
         // fetch pokemon data from API
@@ -58,7 +58,7 @@ const PokemonListContainer: React.FC = () => {
   }, []);
 
   return (
-    <div className="flex items-center justify-center flex-col min-h-screen bg-gray-100 px-4">
+    <div className="flex flex-col items-center justify-center bg-gray-100 min-h-screen px-6">
       <h1 className="text-4xl mb-5">
         <Text>Pokemon List</Text>
       </h1>
@@ -67,24 +67,30 @@ const PokemonListContainer: React.FC = () => {
       <Button
         label="Pokemon Search"
         onClick={() => router.push('/PokemonSearch')}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-6"
       />
 
       {/* Pokemon List */}
-      {pokemon.map((poke) => (
-        <div
-          key={poke.id}
-          className="flex items-center justify-between bg-blue-200 border-blue-500 border-solid border-2 p-2 mb-2 rounded-md"
-        >
-          <div>
-            <p className="text-lg font-semibold">{poke.name}</p>
-            <p>ID: {poke.id}</p>
-            <p>Types: {poke.types.join(', ')}</p>
-            <p>Abilities: {poke.abilities.join(', ')}</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {pokemon.map((poke) => (
+          <div
+            key={poke.id}
+            className="flex flex-col items-center bg-blue-200 border-blue-500 border-solid border-2 p-2 rounded-md"
+          >
+            <img
+              className="w-32 h-32 object-cover"
+              src={poke.sprite}
+              alt={poke.name}
+            />
+            <div>
+              <p className="text-lg font-semibold mt-3">{poke.name}</p>
+              <p>ID: {poke.id}</p>
+              <p>Types: {poke.types.join(', ')}</p>
+              <p>Abilities: {poke.abilities.join(', ')}</p>
+            </div>
           </div>
-          <img src={poke.sprite} alt={poke.name} />
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };
