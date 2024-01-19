@@ -74,7 +74,7 @@ const PokemonSearchContainer: React.FC = () => {
 
   // render
   return (
-    <div>
+    <div className="flex items-center justify-center flex-col min-h-screen bg-gray-100 px-4">
       <form onSubmit={formik.handleSubmit}>
         {/* Input Search */}
         <Input

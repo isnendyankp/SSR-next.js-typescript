@@ -18,7 +18,7 @@ const PokemonListContainer: React.FC = () => {
       try {
         // fetch pokemon list from API
         const response = await axios.get(
-          'https://pokeapi.co/api/v2/pokemon?limit=4'
+          'https://pokeapi.co/api/v2/pokemon?limit=10'
         );
 
         // fetch pokemon data from API
@@ -58,7 +58,7 @@ const PokemonListContainer: React.FC = () => {
   }, []);
 
   return (
-    <div className="p-5">
+    <div className="flex items-center justify-center flex-col min-h-screen bg-gray-100 px-4">
       <h1 className="text-4xl mb-5">
         <Text>Pokemon List</Text>
       </h1>
