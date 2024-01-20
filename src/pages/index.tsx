@@ -4,17 +4,14 @@ import * as yup from 'yup';
 import { useRouter } from 'next/router';
 
 const Home = () => {
-  // use router hook
   const router = useRouter();
 
-  // interface for form props
   interface FormProps {
     email: string;
     name: string;
     password: string;
   }
 
-  // useFormik hook
   const formMik = useFormik<FormProps>({
     initialValues: {
       email: '',
@@ -22,7 +19,6 @@ const Home = () => {
       password: '',
     },
 
-    // onSubmit function for submit form
     onSubmit: async (values) => {
       await fetch('https://mock-api.arikmpt.com/api/user/register', {
         method: 'POST',
@@ -31,79 +27,88 @@ const Home = () => {
         },
         body: JSON.stringify(values),
       });
-      console.log('success');
-      // navigate to login page
+
       router.push('/Login');
     },
 
-    // validation for username, email & password
     validationSchema: yup.object({
-      name: yup.string().required('name tidak boleh kosong'),
+      name: yup.string().required('Name tidak boleh kosong'),
       email: yup
         .string()
-        .email('Email tidak valid')
+        .email('Email harus valid')
         .required('Email tidak boleh kosong'),
       password: yup
         .string()
-        .min(8, 'Password minimal 8 karakter')
+        .min(8, 'Password harus setidaknya berisi 8 karakter')
         .required('Password tidak boleh kosong'),
     }),
   });
 
   return (
-    <Card border={false} className=" ">
-      <Card border>
-        {/* form element */}
-        <form onSubmit={formMik.handleSubmit}>
-          {/* Input name */}
-          <div className="m-1">
-            <Text>{'name'}</Text>
+    <Card border={false} className="flex justify-center items-center">
+      <Card
+        border
+        className="p-6 rounded-lg border-emerald-500 shadow-lg w-1/2"
+      >
+        <form onSubmit={formMik.handleSubmit} className="space-y-4">
+          <div>
+            <Text className="block font-semibold text-emerald-700">Name</Text>
             <Input
-              className="block border-emerald-700 border"
+              className="w-full px-3 py-2 border-emerald-700 border rounded-md"
               name={'name'}
               value={formMik.values.name}
               onChange={formMik.handleChange('name')}
             />
-            {/* add error validation text with yup for input name */}
-            {formMik.errors.name && <Text>{formMik.errors.name}</Text>}
+
+            {formMik.errors.name && (
+              <Text className="text-red-500">{formMik.errors.name}</Text>
+            )}
           </div>
 
-          {/* Input Email */}
-          <div className="m-1">
-            <Text>{'Email'}</Text>
+          <div>
+            <Text className="block font-semibold text-emerald-700">Email</Text>
             <Input
-              className="block border-emerald-700 border"
+              className="w-full px-3 py-2 border-emerald-700 border rounded-md"
               name={'email'}
               value={formMik.values.email}
               onChange={formMik.handleChange('email')}
             />
-            {/* add error validation text with yup for input email */}
-            {formMik.errors.email && <Text>{formMik.errors.email}</Text>}
+
+            {formMik.errors.email && (
+              <Text className="text-red-500">{formMik.errors.email}</Text>
+            )}
           </div>
 
-          {/* Input Password */}
-          <div className="m-1">
-            <Text>{'Password'}</Text>
+          <div>
+            <Text className="block font-semibold text-emerald-500">
+              Password
+            </Text>
             <Input
-              className="block border-emerald-700 border"
+              className="w-full px-3 py-2 border-emerald-700 border rounded-md"
               name={'password'}
               type={'password'}
               value={formMik.values.password}
               onChange={formMik.handleChange('password')}
             />
-            {/* add error validation text with yup for input password */}
-            {formMik.errors.password && <Text>{formMik.errors.password}</Text>}
+
+            {formMik.errors.password && (
+              <Text className="text-red-500">{formMik.errors.password}</Text>
+            )}
           </div>
 
-          {/* Button Submit */}
-          <Button label={'Submit'} type={'submit'} className={'bg-green-500'} />
+          <div>
+            <Button
+              label={'Submit'}
+              type={'submit'}
+              className={'w-full bg-green-500 text-white rounded-md py-2'}
+            />
 
-          {/* "Login" button */}
-          <Button
-            label={'Login'}
-            onClick={() => router.push('/Login')}
-            className={'bg-blue-500 mt-2'}
-          />
+            <Button
+              label={'Login'}
+              onClick={() => router.push('/Login')}
+              className={'w-full bg-blue-500 mt-2 text-white rounded-md py-2'}
+            />
+          </div>
         </form>
       </Card>
     </Card>
