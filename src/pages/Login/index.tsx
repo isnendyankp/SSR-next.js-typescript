@@ -69,46 +69,48 @@ const Login = () => {
   });
 
   return (
-    <Card border={false} className=" ">
-      <Card border>
-        {/* form element */}
-        <form onSubmit={formMik.handleSubmit}>
-          {/* Input Email */}
-          <div className="m-1">
-            <Text>{'Email'}</Text>
+    <Card
+      border={false}
+      className="flex items-center justify-center min-h-screen bg-gray-200 "
+    >
+      <Card border className="p-10 bg-white shadow-lg rounded-lg">
+        <form onSubmit={formMik.handleSubmit} className="space-y-6">
+          <div className="space-y-2">
+            <Text className="font-bold text-lg">{'Email'}</Text>
             <Input
-              className="block border-emerald-700 border"
+              className="block border-emerald-700 border w-full p-2 rounded-lg"
               name={'email'}
               value={formMik.values.email}
               onChange={formMik.handleChange('email')}
             />
-            {/* add error validation text with yup for input email */}
             {formMik.errors.email && <Text>{formMik.errors.email}</Text>}
           </div>
 
-          {/* Input Password */}
-          <div className="m-1">
-            <Text>{'Password'}</Text>
+          <div className="space-y-2">
+            <Text className="font-bold text-lg">{'Password'}</Text>
             <Input
-              className="block border-emerald-700 border"
+              className="block border-emerald-700 border w-full p-2 rounded-lg"
               name={'password'}
               type={'password'}
               value={formMik.values.password}
               onChange={formMik.handleChange('password')}
             />
-            {/* add error validation text with yup for input password */}
             {formMik.errors.password && <Text>{formMik.errors.password}</Text>}
           </div>
 
-          {/* "Register" button */}
-          <Button
-            label={'Register'}
-            onClick={() => router.push('/')}
-            className={'bg-blue-500 mt-2'}
-          />
+          <div className="flex justify-between items-center">
+            <Button
+              label={'Register'}
+              onClick={() => router.push('/')}
+              className={'bg-blue-500 mt-2 py-2 px-4 rounded-lg'}
+            />
 
-          {/* Button Login */}
-          <Button label={'Login'} type={'submit'} className={'bg-green-500'} />
+            <Button
+              label={'Login'}
+              type={'submit'}
+              className={'bg-green-500 py-2 px-4 rounded-lg'}
+            />
+          </div>
         </form>
       </Card>
     </Card>
