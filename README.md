@@ -40,7 +40,12 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 
-## installer 
+## installer
+
 1. npm install formik --save
 2. npm install yup
 3. npm install axios
+
+## Deploy on netlify
+
+https://pokemonnextjs.netlify.app/
