@@ -18,6 +18,9 @@ this project assignment for unit testing with nextjs
     - ✔ Automatically clear mock calls and instances between every test? … no
 3. npm i -D ts-node
 4. npm i --save-dev @types/jest
+5. npm install --save-dev @babel/preset-typescript
+6. npm install --save-dev @babel/preset-typescript @babel/preset-react
+7. npm i -D @babel/preset-env
 
 
 ## Deploy on netlify
