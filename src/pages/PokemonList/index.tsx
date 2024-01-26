@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { Text, Button } from '../../components';
 import { PokemonListData } from '../../interfaces/Category';
 
+
 const PokemonListContainer: React.FC = () => {
   // useState hook
   const [pokemon, setPokemon] = useState<PokemonListData[]>([]);

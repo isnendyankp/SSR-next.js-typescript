@@ -5,6 +5,7 @@ import { Input, Button } from '../../components';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { PokemonSearchData } from '../../interfaces/Category';
+import { useAuth } from '../../context/AuthContext';
 
 // PokemonSearchContainer component
 const PokemonSearchContainer: React.FC = () => {
@@ -14,6 +15,9 @@ const PokemonSearchContainer: React.FC = () => {
 
   // use Navigate router hook
   const router = useRouter();
+
+  // useAuth hook
+  const { isAuthenticated } = useAuth();
 
   // useFormik hook
   const formik = useFormik({
@@ -28,7 +32,11 @@ const PokemonSearchContainer: React.FC = () => {
 
     // onSubmit function for form submission
     onSubmit: async (values) => {
-      setSearch(values.search);
+      if (isAuthenticated) {
+        setSearch(values.search);
+      } else {
+        router.push('/login');
+      }
     },
   });
 
