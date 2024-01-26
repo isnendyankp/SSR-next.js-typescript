@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login Component should have useFormik hook 1`] = `
+<form
+  class="space-y-6"
+  data-testid="login-form"
+>
+  <div
+    class="space-y-2"
+  >
+    <p
+      class="font-bold text-lg"
+    >
+      Email
+    </p>
+    <input
+      class="block border-emerald-700 border w-full p-2 rounded-lg block flex-1 border-2 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+      name="email"
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    class="space-y-2"
+  >
+    <p
+      class="font-bold text-lg"
+    >
+      Password
+    </p>
+    <input
+      class="block border-emerald-700 border w-full p-2 rounded-lg block flex-1 border-2 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+      name="password"
+      type="password"
+      value=""
+    />
+  </div>
+  <div
+    class="flex justify-between items-center"
+  >
+    <button
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
+    >
+      Register
+    </button>
+    <button
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
+      type="submit"
+    >
+      Login
+    </button>
+  </div>
+</form>
+`;

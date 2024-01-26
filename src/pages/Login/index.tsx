@@ -74,7 +74,11 @@ const Login = () => {
       className="flex items-center justify-center min-h-screen bg-gray-200 "
     >
       <Card border className="p-10 bg-white shadow-lg rounded-lg">
-        <form onSubmit={formMik.handleSubmit} className="space-y-6">
+        <form
+          onSubmit={formMik.handleSubmit}
+          className="space-y-6"
+          data-testid="login-form"
+        >
           <div className="space-y-2">
             <Text className="font-bold text-lg">{'Email'}</Text>
             <Input
