@@ -31,7 +31,7 @@ module.exports = {
 };
 ```
 
-2. create file jest.config.js and add this code
+2. create or change file into jest.config.ts and add this code
 ```javascript
 import type { Config } from 'jest';
 import nextJest from 'next/jest.js';
