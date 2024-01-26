@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Text component unit testing should render text with children 1`] = `
+<p>
+  Text with children
+</p>
+`;
