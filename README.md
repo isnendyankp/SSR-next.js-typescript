@@ -21,6 +21,7 @@ this project assignment for unit testing with nextjs
 5. npm install --save-dev @babel/preset-typescript
 6. npm install --save-dev @babel/preset-typescript @babel/preset-react
 7. npm i -D @babel/preset-env
+8. npm install @testing-library/jest-dom --save-dev
 
 ## Setting config file for testing
 
@@ -98,6 +99,32 @@ export default createJestConfig(config);
     "ts-node": "^10.9.2",
     "typescript": "^5"
   }
+}
+```
+
+4. matching tsconfig.json into this code
+```javascript
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }
 ```
 
