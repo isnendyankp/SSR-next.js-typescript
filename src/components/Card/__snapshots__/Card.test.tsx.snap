@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card component unit testing should render card with border 1`] = `
+<div
+  class="rounded border-slate-600 border p-8 undefined"
+>
+  Card with border
+</div>
+`;
