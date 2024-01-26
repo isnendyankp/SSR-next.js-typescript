@@ -16,6 +16,8 @@ this project assignment for unit testing with nextjs
     - ✔ Do you want Jest to add coverage reports? … yes
     - ✔ Which provider should be used to instrument code for coverage? › babel
     - ✔ Automatically clear mock calls and instances between every test? … no
+3. npm i -D ts-node
+4. npm i --save-dev @types/jest
 
 
 ## Deploy on netlify
