@@ -128,6 +128,17 @@ export default createJestConfig(config);
 }
 ```
 
+## Add file for npm run dev after testing
+
+1. create file next.config.js and add this code
+```javascript
+module.exports = {
+  experimental: {
+    forceSwcTransforms: true,
+  },
+}
+```
+
 ## Deploy on netlify
 
 https://pokemonnextjs.netlify.app/
