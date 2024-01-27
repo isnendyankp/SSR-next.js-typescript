@@ -12,6 +12,7 @@ const config: Config = {
   testEnvironment: 'jsdom',
   moduleNameMapper: {
      '^@/components/(.*)$': '<rootDir>/components/$1',
+      '^@/pages/(.*)$': '<rootDir>/pages/$1',
   },
     
   // Add more setup options before each test is run
